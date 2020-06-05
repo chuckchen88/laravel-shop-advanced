@@ -14,6 +14,11 @@ class Product extends Model
     protected $casts = [
         'on_sale' => 'boolean', // on_sale 是一个布尔类型的字段
     ];
+    const TYPE_SECKILL = 'seckill';
+
+    public static $typeMap = [
+        self::TYPE_SECKILL => '秒杀商品',
+    ];
     // 与商品SKU关联
     public function skus()
     {
@@ -27,5 +32,10 @@ class Product extends Model
             return $this->attributes['image'];
         }
         return \Storage::disk('public')->url($this->attributes['image']);
+    }
+
+    public function seckill()
+    {
+        return $this->hasOne(SeckillProduct::class);
     }
 }
