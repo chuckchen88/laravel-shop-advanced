@@ -7,6 +7,11 @@ use Ramsey\Uuid\Uuid;
 
 class Order extends Model
 {
+    const TYPE_SECKILL = 'seckill';
+    public static $typeMap = [
+        self::TYPE_SECKILL => '秒杀商品订单',
+    ];
+
     const REFUND_STATUS_PENDING = 'pending';
     const REFUND_STATUS_APPLIED = 'applied';
     const REFUND_STATUS_PROCESSING = 'processing';

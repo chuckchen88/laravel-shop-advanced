@@ -44,6 +44,9 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::get('payment/{order}/wechat', 'PaymentController@payByWechat')->name('payment.wechat');
 
     Route::get('coupon_codes/{code}', 'CouponCodesController@show')->name('coupon_codes.show');
+
+    Route::post('seckill_orders', 'OrdersController@seckill')->name('seckill_orders.store');
+
 });
 
 Route::post('payment/alipay/notify', 'PaymentController@alipayNotify')->name('payment.alipay.notify');

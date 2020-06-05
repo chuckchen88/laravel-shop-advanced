@@ -14,6 +14,8 @@ use App\Models\Order;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Services\OrderService;
+use App\Http\Requests\SeckillOrderRequest;
+use App\Models\ProductSku;
 
 class OrdersController extends Controller
 {
@@ -135,5 +137,15 @@ class OrdersController extends Controller
         ]);
 
         return $order;
+    }
+
+    //下单逻辑
+    public function seckill(SeckillOrderRequest $request, OrderService $orderService)
+    {
+        $user    = $request->user();
+        $address = UserAddress::find($request->input('address_id'));
+        $sku     = ProductSku::find($request->input('sku_id'));
+
+        return $orderService->seckill($user, $address, $sku);
     }
 }
